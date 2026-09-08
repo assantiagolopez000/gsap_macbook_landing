@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import {Canvas} from '@react-three/fiber';
 import {Box, OrbitControls} from '@react-three/drei';
 import MacbookModel14 from './models/Macbook-14';
+import StudioLights from './StudioLights';
+
 
 const ProductViewer = () => {
     const { color, scale, setColor, setScale } = useMacbookStore();
@@ -54,7 +56,8 @@ const ProductViewer = () => {
         {/* Before we can use the model we must convert the .glb into a react component through the terminal */}
         <Canvas id='canvas' camera={{ position: [0,2,5], fov: 50, near: 0.1, far: 100}}>
             
-            <ambientLight intensity={1} />
+            {/* <ambientLight intensity={1} /> No longer needed using import from studiolight.jsx*/}
+            <StudioLights/>
                         
             {/* Box coming from react-three drei */}
             {/* <Box position={[0,0,0]} scale={10 * scale} material-color={color}/> */}
