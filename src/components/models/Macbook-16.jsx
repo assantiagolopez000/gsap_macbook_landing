@@ -13,7 +13,7 @@ import { useEffect } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import useMacbookStore from '../../store';
 import { noChangeParts } from '../../constants';
-import { Color } from 'three';
+import { Color, SRGBColorSpace } from 'three';
 
 export default function MacbookModel16(props) {
 
@@ -22,6 +22,9 @@ export default function MacbookModel16(props) {
   const { nodes, materials, scene } = useGLTF('/models/macbook-16-transformed.glb');
 
   const texture = useTexture('/screen.png');
+  // simple reasons below was added is so that the colors displayed on the screen isnt washed out or overly dark colors
+  texture.colorSpace = SRGBColorSpace;
+  texture.needsUpdate = true;
 
   useEffect(() => {
     scene.traverse((child) => {

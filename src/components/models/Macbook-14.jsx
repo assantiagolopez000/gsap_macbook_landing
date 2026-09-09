@@ -12,7 +12,7 @@ import React, { useEffect } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import useMacbookStore from '../../store';
 import { noChangeParts } from '../../constants';
-import { Color } from 'three';
+import { Color, SRGBColorSpace } from 'three';
 
 // Just changed the function named and changed export to export default since this is the only thing that we will be exporting
 
@@ -23,7 +23,8 @@ export default function MacbookModel14(props) {
   const { nodes, materials, scene } = useGLTF('/models/macbook-14-transformed.glb');
 
   const texture = useTexture('/screen.png'); //Allows us to add a screen image over this model.
-
+  texture.colorSpace = SRGBColorSpace;
+  texture.needsUpdate = true;
 
   useEffect(() => {
     scene.traverse((child) => {
